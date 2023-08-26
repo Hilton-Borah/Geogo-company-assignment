@@ -7,102 +7,74 @@ const movieRoute = express.Router();
 movieRoute.get("/", async (req, res) => {
     try {
         const page = parseInt(req.query.page) - 1 || 0;
-        const limit = parseInt(req.query.limit) || 5;
+        const limit = parseInt(req.query.limit) || 10;
         let search = req.query.search || "";
         let yearsearch = req.query.yearsearch || "";
-        yearsearch = typeof(yearsearch)==="String"? + yearsearch : yearsearch
+        // yearsearch = typeof(yearsearch)==="String"? + yearsearch : yearsearch
         // search = typeof(search)==="String"? search : +search
 
-        let sort = req.query.sort || "imdbRating" || "Year";
+        let sortOrder = req.query.sortOrder;
+        let sortBy = req.query.sortBy ;
         let genre = req.query.genre;
-
-        // const genreOptions = [
-        //     "Action", "Romance", "Fantasy", "Drama", "Crime", "Adventure", "Thriller", "Sci-fi", "Music", "Family"
-        // ];
-
-        // genre==="All" ? (genre=[...genreOptions]) : (genre=req.query.genre.split(",").map((el)=>genre+el));
-
-        console.log(yearsearch)
-
-        req.query.sort ? (sort=req.query.sort.split(",")) : (sort=[sort])
-
-        let sortBy = {};
-        if (sort[1]){
-            sortBy[sort[0]] = sort[1];
-        } else {
-            sortBy[sort[0]] = "asc"
+        let sortOptions = {};
+        if (sortBy && sortOrder) {
+            sortOptions[sortBy] = sortOrder === 'asc' ? 1 : -1;
         }
-        // {Title:{$regex:search,$options:"i"}}
-        const movies = await movieModel.find(
-            {
-                $and: [
-                  {
-                    $or: [
-                      {
-                        Title:{$regex:search,$options:"i"}
-                      },
-                      {
-                        Genre:{$regex:search,$options:"i"}
-                      }
-                    ]
-                  },
-                  {
-                    Year:{$eq:yearsearch}
-                  }
-                ]
-              }
-            
-            
-        //     {$and:[
-        //     {Title:{$regex:search,$options:"i"}},
-        //     {Genre:{$regex:search,$options:"i"}},
-        //     {Year:{$eq:yearsearch}}
-        // ]}
-        )
-        // .where("Genre")
-        // .in([...genre])
-        .sort(sortBy)
-        .skip(page*limit)
-        .limit(limit)
 
-        // const total = await movieModel.countDocuments({
-        //     Genre:{$in:genre},
-        //     Title:{$regex:search,$options:"i"},
-        //     // Year:{$regex:search,$options:"i"}
-        //     // ,{ Year: { $in: search } }
-        // })
-        
-        const response={
-            error:false,
+        console.log(sortOptions)
+        // {Title:{$regex:search,$options:"i"}}
+        const movies1 = await movieModel.find(
+            {
+                $or: [
+                    { Title: { $regex: search, $options: "i" } },
+                    { Genre: { $regex: search, $options: "i" } },
+                ],
+                // Year: { $eq: yearsearch }
+            }
+        )
+            .sort(sortOptions)
+            .skip(page * limit)
+            .limit(limit)
+
+
+            const movies2 = await movieModel.find(
+                {
+                    Year: { $eq: yearsearch }
+                }
+            )
+                .sort(sortOptions)
+                .skip(page * limit)
+                .limit(limit)
+        let allMovie = yearsearch ? movies2 : search ? movies1 : movies1
+
+        const response = {
+            error: false,
             // total,
-            pages:page+1,
+            pages: page + 1,
             limit,
             // genres:genreOptions,
-            movies
+            allMovie
         }
         // res.setHeader('Content-Type', 'application/json')
-        res.send(response)
-    }catch (err) {
+        res.status(200).json(response)
+    } catch (err) {
         console.log({ "err": err });
         // res.setHeader('Content-Type', 'application/json')
         res.status(500).json({ err: true, message: "Internal Server Error" })
     }
-
-
-
-
-
-    // try {
-
-
-
-
-    //     const posts = await movieModel.find()
-    //     res.status(200).json({ "success": true, "message": posts });
-    // } catch (error) {
-    //     res.status(404).json({ "success": false, "message": "Data not found" })
-    // }
 })
+
+
+movieRoute.get("/:id", async(req,res)=>{
+    const {id} = req.params
+      try {
+        const posts = await movieModel.findById(id)
+        res.status(200).json({ "success": true, "message": posts });
+    } catch (error) {
+        res.status(404).json({ "success": false, "message": "Data not found" })
+    }
+})
+
 
 movieRoute.post("/add", async (req, res) => {
     const payload = req.body;
