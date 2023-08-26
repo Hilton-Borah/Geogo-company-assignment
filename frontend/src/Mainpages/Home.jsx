@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MovieCard from '../componants/MovieCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllData } from '../Redux/AppReducer/action';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const Home = () => {
+  const [page,setpage] = useState(1)
   const dispatch = useDispatch();
   const { isLoading, isError, allMovie } = useSelector((state) => {
     return {
@@ -20,7 +21,7 @@ const handlePrevButton=()=>{
 }
 
 useEffect(()=>{
-  dispatch(getAllData)
+  dispatch(getAllData(page,10))
 },[])
   return (
     <div className='w-10/12 grid m-auto lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1  gap-10 mt-36'>

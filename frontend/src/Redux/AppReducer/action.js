@@ -1,9 +1,9 @@
 import axios from "axios";
 import * as types from "./actiontypes";
 
-export const getAllData = (dispatch) =>{
+export const getAllData=(page,limit) => (dispatch) =>{
     dispatch({type:types.GET_ALL_MOVIE_REQUEST});
-    return axios.get(`http://localhost:4500/movie/`)
+    return axios.get(`http://localhost:4500/movie?page=${page}&limit=${limit}`)
     .then((res)=>{
         console.log(res.data.allMovie)
         dispatch({type:types.GET_ALL_MOVIE_SUCCESS,payload:res.data.allMovie})
