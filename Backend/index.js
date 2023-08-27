@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const { movieRoute } = require("./Routes/movieRoute");
+const { userRotes } = require("./Routes/userRoute");
 // const { CartRouter } = require("./Routes/cart.route");
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cors())
 app.use("/movie",movieRoute);
-// app.use("/cart",CartRouter);
+app.use("/user",userRotes)
 
 
 app.listen(process.env.PORT,()=>{

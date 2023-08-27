@@ -58,7 +58,7 @@ movieRoute.get("/", async (req, res) => {
         // res.setHeader('Content-Type', 'application/json')
         res.status(200).json(response)
     } catch (err) {
-        console.log({ "err": err });
+        // console.log({ "err": err });
         // res.setHeader('Content-Type', 'application/json')
         res.status(500).json({ err: true, message: "Internal Server Error" })
     }
@@ -124,7 +124,7 @@ movieRoute.post("/add", async (req, res) => {
             res.status(201).json({ "success": true, "message": "Added in cart" });
         }
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(404).json({ "success": false, "message": "something went wrong" });
     }
 })

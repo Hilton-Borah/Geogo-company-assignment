@@ -6,6 +6,7 @@ const intialState = {
     isLoading: false,
     isError: false,
     movieDetails: {},
+    moviesPost:{}
 }
 
 export const Appreducer = (state = intialState, action) => {
@@ -30,6 +31,67 @@ export const Appreducer = (state = intialState, action) => {
                 allMovie: [],
                 isError: true
             }
+
+
+        case types.POST_ALL_MOVIE_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case types.POST_ALL_MOVIE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                moviesPost: payload,
+                isError: false
+            }
+        case types.POST_ALL_MOVIE_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                moviesPost: [],
+                isError: true
+            }
+
+            case types.DELETE_ALL_MOVIE_REQUEST:
+                return {
+                    ...state,
+                    isLoading: true
+                }
+            case types.DELETE_ALL_MOVIE_SUCCESS:
+                return {
+                    ...state,
+                    isLoading: false,
+                    moviesPost: payload,
+                    isError: false
+                }
+            case types.DELETE_ALL_MOVIE_FAILURE:
+                return {
+                    ...state,
+                    isLoading: false,
+                    moviesPost: {},
+                    isError: true
+                }
+
+                case types.EDIT_ALL_MOVIE_REQUEST:
+                return {
+                    ...state,
+                    isLoading: true
+                }
+            case types.EDIT_ALL_MOVIE_SUCCESS:
+                return {
+                    ...state,
+                    isLoading: false,
+                    moviesPost: payload,
+                    isError: false
+                }
+            case types.EDIT_ALL_MOVIE_FAILURE:
+                return {
+                    ...state,
+                    isLoading: false,
+                    moviesPost: {},
+                    isError: true
+                }
 
         // case types.GET_ALL_MOVIE_SEARCH_REQUEST:
         //     return {

@@ -5,7 +5,7 @@ export const getAllData=(page,limit) => (dispatch) =>{
     dispatch({type:types.GET_ALL_MOVIE_REQUEST});
     return axios.get(`http://localhost:4500/movie?page=${page}&limit=${limit}`)
     .then((res)=>{
-        console.log(res.data.allMovie)
+        // console.log(res.data.allMovie)
         dispatch({type:types.GET_ALL_MOVIE_SUCCESS,payload:res.data.allMovie})
     })
     .catch((err)=>{
@@ -22,6 +22,46 @@ export const getAllDataDetails =(id)=> (dispatch) =>{
     })
     .catch((err)=>{
         dispatch({type:types.GET_ALL_MOVIEDETAILS_FAILURE})
+    })
+}
+
+export const postAllData =(data)=> (dispatch) =>{
+    dispatch({type:types.POST_ALL_MOVIE_REQUEST});
+    return axios.post(`http://localhost:4500/movie/add/`,data)
+    .then((res)=>{
+        // console.log(res.data)
+        dispatch({type:types.POST_ALL_MOVIE_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        // console.log(err)
+        dispatch({type:types.POST_ALL_MOVIE_FAILURE})
+    })
+}
+
+
+export const deleteData =(id)=> (dispatch) =>{
+    dispatch({type:types.DELETE_ALL_MOVIE_REQUEST});
+    return axios.delete(`http://localhost:4500/movie/delete/${id}`)
+    .then((res)=>{
+        // console.log(res.data)
+        dispatch({type:types.DELETE_ALL_MOVIE_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        // console.log(err)
+        dispatch({type:types.DELETE_ALL_MOVIE_FAILURE})
+    })
+}
+
+export const editData =(id)=> (dispatch) =>{
+    dispatch({type:types.EDIT_ALL_MOVIE_REQUEST});
+    return axios.patch(`http://localhost:4500/movie/update/${id}`)
+    .then((res)=>{
+        // console.log(res.data)
+        dispatch({type:types.EDIT_ALL_MOVIE_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        // console.log(err)
+        dispatch({type:types.EDIT_ALL_MOVIE_FAILURE})
     })
 }
 
