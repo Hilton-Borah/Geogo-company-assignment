@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getLocalData } from '../Utils/LocalStorage';
-import { useDispatch, useSelector } from 'react-redux';
-import { getWishlistData } from '../Redux/AppReducer/action';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,23 +9,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const dispatch = useDispatch();
-  const { isLoading, isError, movieDetails,wishlist } = useSelector((state) => {
-    return {
-      isLoading: state.Appreducer.isLoading,
-      idError: state.Appreducer.idError,
-      movieDetails: state.Appreducer.movieDetails,
-      wishlist: state.Appreducer.wishlist
-    }
-  })
-
-  useEffect(()=>{
-    dispatch(getWishlistData)
-  },[])
-
-  const alldatawishlist = wishlist && wishlist.filter((el)=>getLocalData("userID")===el.userID)
-
-  console.log(alldatawishlist)
+  
 
   return (
     <nav className="bg-gray-800 w-full fixed top-0">
@@ -42,7 +24,7 @@ const Navbar = () => {
             <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
             <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Register</Link>
             <Link to="/moviecontrol" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Movie control</Link>
-            <Link to="/wishlist" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</Link>
+            <a href="/wishlist" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</a>
             <Link className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{getLocalData("username")?<p>Hi, {getLocalData("username")}</p> : "My account"}</Link>
             </div>
           </div>
@@ -66,7 +48,7 @@ const Navbar = () => {
             <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
             <Link to="/moviecontrol" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Movie control</Link>
             <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Register</Link>
-            <Link to="/wishlist" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</Link>
+            <a href="/wishlist" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</a>
           </div>
         </div>
       )}

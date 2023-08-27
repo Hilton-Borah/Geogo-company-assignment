@@ -93,6 +93,21 @@ export const getWishlistData= (dispatch) =>{
 }
 
 
+export const deleteWishlistData =(id)=> (dispatch) =>{
+    dispatch({type:types.DELETE_MOVIE_WISHLIST_REQUEST});
+    return axios.delete(`http://localhost:4500/wishlist/delete/${id}`)
+    .then((res)=>{
+        // console.log(res.data)
+        dispatch({type:types.DELETE_MOVIE_WISHLIST_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        // console.log(err)
+        dispatch({type:types.DELETE_MOVIE_WISHLIST_FAILURE})
+    })
+}
+
+
+
 // export const getAllSearchData =(query)=> (dispatch) =>{
 //     dispatch({type:types.GET_ALL_MOVIE_SEARCH_REQUEST});
 //     return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e4647b933575d419ceb5fef345794dac&query=${query}`)

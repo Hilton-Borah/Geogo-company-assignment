@@ -186,36 +186,6 @@ const MovieControl = () => {
                     </button>
                   </div>
                 </div>
-
-
-
-                // <div key={el.id} className='flex justify-between items-center mt-2 pb-1 border-b'>
-                //   <div className='w-full md:w-4/5 flex justify-between items-center gap-2 md:gap-5'>
-                //     <IoIosArrowBack />
-                //     <Link to={`/${el.Title}/details/${el._id}`}>
-                //       <img className='w-5 h-5' src={el.Poster} alt="" />
-                //     </Link>
-                //     <div className='flex flex-col'>
-                //       <Link to={`/${el.Title}/details/${el._id}`}>
-                //         <p className='lg:text-sm md:text-xs'>{el.Title}</p>
-                //       </Link>
-                //       <p className='md:hidden text-sm'>{el.Year}</p>
-                //     </div>
-                //     <p className='hidden md:block'>{el.Year}</p>
-                //   </div>
-                //   <div className='w-1/2 md:w-1/5 flex justify-between items-center gap-2'>
-                //     <button className='flex justify-between items-center gap-1 rounded text-blue hover:bg-blue hover:text-white border-blue border-2 pl-2 pr-2 text-xs'>
-                //       <AiOutlineEdit />
-                //       <span className="hidden md:inline">Edit</span>
-                //     </button>
-                //     <button className='flex justify-between items-center gap-1 rounded text-red hover:bg-red hover:text-white border-red border-2 pl-2 pr-2 text-xs'>
-                //       <AiOutlineDelete />
-                //       <span className="hidden md:inline">Delete</span>
-                //     </button>
-                //   </div>
-                // </div>
-
-
               )
             })
           }

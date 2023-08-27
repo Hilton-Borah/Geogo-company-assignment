@@ -16,7 +16,7 @@ const LoginUser = () => {
   const [text, setText] = useState(initialState);
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const {usermessage, isLoading, isError } = useSelector((state) => {
+  const { usermessage, isLoading, isError } = useSelector((state) => {
     return {
       usermessage: state.Authreducer.usermessage,
       isLoading: state.Authreducer.isLoading,
@@ -27,7 +27,7 @@ const LoginUser = () => {
   const { password, email } = text;
 
   const handleChange = (e) => {
-    const { value,name } = e.target;
+    const { value, name } = e.target;
     setText({ ...text, [name]: value })
   }
 
@@ -36,17 +36,17 @@ const LoginUser = () => {
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(getLogin(text))
-    .then((res)=>{
-      console.log(res)
-      if (res && res.payload && res.payload.message==="Login Successfully"){
-        alert("Login Successfully");
-        saveLocalData("token",res.payload.token)
-        saveLocalData("username",res.payload.user.name)
-        saveLocalData("userID",res.payload.user._id)
-      } else {
-        alert("Wrong credentials")
-      }
-    })
+      .then((res) => {
+        console.log(res)
+        if (res && res.payload && res.payload.message === "Login Successfully") {
+          alert("Login Successfully");
+          saveLocalData("token", res.payload.token)
+          saveLocalData("username", res.payload.user.name)
+          saveLocalData("userID", res.payload.user._id)
+        } else {
+          alert("Wrong credentials")
+        }
+      })
   }
 
 
@@ -58,13 +58,8 @@ const LoginUser = () => {
         <div className='w-full md:w-1/2 border-r-2'>
           <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-page-4468581-3783954.png" alt="" />
         </div>
-        <hr className='border-2 border-gray'/>
+        <hr className='border-2 border-gray' />
         <div className='w-full md:w-1/2 mt-10'>
-          {/* <input type="text" value={email} name="email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="text" value={password} name="password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleChange}>Add</button> */}
-
-          {/* <form action="" onSubmit={handleClick}> */}
           <div class="sm:col-span- w-3/4 m-auto">
             <label for="email" class="text-start block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div class="mt-2">
@@ -82,7 +77,13 @@ const LoginUser = () => {
             Donot have an account? <Link to={"/register"}><b className='border-b-2 border-black'>Register</b></Link>
           </div>
           <div class="mt-4 flex items-center justify-center gap-x-6 mb-10">
-            <button onClick={handleClick} class="p-2 pl-10 pr-10 bg-blue rounded-md text-white hover:bg-white hover:text-blue border-2 border-blue font-semibold">Login</button>
+            <button onClick={handleClick} class="p-2 pl-10 pr-10 bg-blue rounded-md text-white hover:bg-white hover:text-blue border-2 border-blue font-semibold">
+              {
+                isLoading ? <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-blue"></div>
+                </div> : "Register"
+              }
+            </button>
           </div>
           {/* </form> */}
         </div>
