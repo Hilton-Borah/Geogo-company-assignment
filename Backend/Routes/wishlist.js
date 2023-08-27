@@ -1,14 +1,14 @@
 const express=require("express");
-const { WishlistModel } = require("../model/wishlist.model");
+const { WishlistModel } = require("../model/wishlist");
 
 
 const WishlistRouter=express.Router();
 
 WishlistRouter.get("/",async(req,res)=>{
-    const payload=req.body;
-    const userID_in_req=req.body.userID;
+    // const payload=req.body;
+    // const userID_in_req=req.body.userID;
     try {
-       const wishlist=await WishlistModel.find({"userID":userID_in_req})
+       const wishlist=await WishlistModel.find()
        res.send(wishlist); 
     } catch (error) {
         console.log(wishlist);
