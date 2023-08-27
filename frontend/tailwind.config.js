@@ -12,6 +12,9 @@ module.exports = {
         'green':'green',
         'red':'red',
         'blue':'#008bdc',
+      },
+      height: {
+        'image': '400px',
       }
     },
   },

@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import { getAllDataDetails } from '../Redux/AppReducer/action';
+import { useNavigate, useParams } from 'react-router-dom'
+import { getAllDataDetails, postWishlist } from '../Redux/AppReducer/action';
+import { getLocalData } from '../Utils/LocalStorage';
 
 const MovieDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { isLoading, isError, movieDetails } = useSelector((state) => {
+  const navigate=useNavigate();
+  const [check,setCheck] = useState(false)
+  const { isLoading, isError, movieDetails,wishlist } = useSelector((state) => {
     return {
       isLoading: state.Appreducer.isLoading,
       idError: state.Appreducer.idError,
       movieDetails: state.Appreducer.movieDetails,
+      wishlist: state.Appreducer.wishlist
     }
   })
 
@@ -18,17 +22,35 @@ const MovieDetails = () => {
     dispatch(getAllDataDetails(id))
   }, [])
 
-  console.log(movieDetails)
+  // console.log(wishlist)
   return (
     <div>
       {
         movieDetails && movieDetails.message && <div className='md:flex justify-between items-center w-11/12 m-auto mt-24 border rounded-xl'>
           <div className='md:w-1/4 sm:w-full p-5 md:shrink-0'>
-            <img className='w-11/12 m-auto rounded-xl' src={movieDetails.message.Poster} alt="" />
+            <img className='w-11/12 h-image m-auto rounded-xl' src={movieDetails.message.Poster} alt="" />
             <hr className='border-2 bg-gray mt-5' />
             <div className='flex justify-between items-center mt-5'>
               <button className='text-green border-2 border-green font-semibold p-1 pl-3 pr-3 rounded-md hover:text-white hover:bg-green'>Trailer</button>
-              <button className='text-blue border-2 border-blue font-semibold p-1 pl-3 pr-3 rounded-md hover:text-white hover:bg-blue'>+ Add to wishlist</button>
+              <button disabled={check} onClick={()=>{
+                // return (
+                  if (getLocalData("token")){
+                    dispatch(postWishlist({
+                      ID:movieDetails.message._id,
+                      Title:movieDetails.message.Title,
+                      Genre:movieDetails.message.Genre,
+                      Year:movieDetails.message.Year,
+                      Poster:movieDetails.message.Poster,
+                      userID:getLocalData("userID"),
+                    }))
+
+                    alert("Movie added to wishlist")
+                    setCheck(true)
+                  } else {
+                    navigate("/login")
+                  }
+                // )
+              }} className='text-blue border-2 border-blue font-semibold p-1 pl-3 pr-3 rounded-md hover:text-white hover:bg-blue'>{check ? "Added to wishlist":"+ Add to wishlist"}</button>
             </div>
           </div>
           <div className='w-3/4 text-start p-4 leading-loose'>

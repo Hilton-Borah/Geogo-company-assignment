@@ -65,6 +65,34 @@ export const editData =(id)=> (dispatch) =>{
     })
 }
 
+
+export const postWishlist =(data)=> (dispatch) =>{
+    dispatch({type:types.POST_MOVIE_WISHLIST_REQUEST});
+    return axios.post(`http://localhost:4500/wishlist/add/`,data)
+    .then((res)=>{
+        console.log(res.data)
+        dispatch({type:types.POST_MOVIE_WISHLIST_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        // console.log(err)
+        dispatch({type:types.POST_MOVIE_WISHLIST_FAILURE})
+    })
+}
+
+
+export const getWishlistData= (dispatch) =>{
+    dispatch({type:types.GET_MOVIE_WISHLIST_REQUEST});
+    return axios.get(`http://localhost:4500/wishlist/`)
+    .then((res)=>{
+        console.log(res.data)
+        dispatch({type:types.GET_MOVIE_WISHLIST_SUCCESS,payload:res.data})
+    })
+    .catch((err)=>{
+        dispatch({type:types.GET_MOVIE_WISHLIST_FAILURE})
+    })
+}
+
+
 // export const getAllSearchData =(query)=> (dispatch) =>{
 //     dispatch({type:types.GET_ALL_MOVIE_SEARCH_REQUEST});
 //     return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=e4647b933575d419ceb5fef345794dac&query=${query}`)

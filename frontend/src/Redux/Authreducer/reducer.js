@@ -8,7 +8,7 @@ const initialState = {
     isError: false
 }
 
-export const HiltonReducer = (state = initialState, action) => {
+export const Authreducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case types.REGISTRATION_REQUEST:
@@ -23,7 +23,7 @@ export const HiltonReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                massage: payload
+                usermessage: payload
             }
 
         case types.REGISTRATION_FAILURE:
@@ -31,7 +31,7 @@ export const HiltonReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: true,
-                // massage: ""
+                usermessage: payload
             }
 
         case types.LOGIN_REQUEST:
@@ -57,28 +57,28 @@ export const HiltonReducer = (state = initialState, action) => {
                 loginData: null
             }
 
-            case types.OTP_REQUEST:
-                return {
-                    ...state,
-                    isLoading: true,
-                    isError: false
-                }
+            // case types.OTP_REQUEST:
+            //     return {
+            //         ...state,
+            //         isLoading: true,
+            //         isError: false
+            //     }
     
-            case types.OTP_SUCCESS:
-                return {
-                    ...state,
-                    isLoading: false,
-                    isError: false,
-                    otpDetail: payload
-                }
+            // case types.OTP_SUCCESS:
+            //     return {
+            //         ...state,
+            //         isLoading: false,
+            //         isError: false,
+            //         otpDetail: payload
+            //     }
     
-            case types.OTP_FAILURE:
-                return {
-                    ...state,
-                    isLoading: false,
-                    isError: true,
-                    otpDetail: null
-                }
+            // case types.OTP_FAILURE:
+            //     return {
+            //         ...state,
+            //         isLoading: false,
+            //         isError: true,
+            //         otpDetail: null
+            //     }
 
 
         default:
