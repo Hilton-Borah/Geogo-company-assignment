@@ -58,7 +58,7 @@ const Register = () => {
     <div>
       {/* <p className='text-5xl text-center mt-10 font-semibold'>Welcome to Mobilicis</p> */}
       {/* <p className='text-1xl text-center m-5 mb-5 font-semibold'>Please login your account to proceed further</p> */}
-      <div className='w-5/6 border rounded-xl shadow-xl m-auto flex flex-col justify-center items-center mt-36 md:flex-row p-10'>
+      <div className='w-5/6 border rounded-xl shadow-xl m-auto flex flex-col justify-center items-center mt-36 md:flex-row p-10  mb-12'>
         <div className='w-full md:w-1/2 border-r-2'>
           <img className='w-10/12' src="https://github.com/Hilton-Borah/dummyImageforUrbanGuys/assets/103739534/51a2e35a-321d-4a75-86e9-2657a856b10b" alt="" />
         </div>

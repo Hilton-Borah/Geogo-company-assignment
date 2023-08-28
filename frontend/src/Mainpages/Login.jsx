@@ -58,7 +58,7 @@ const LoginUser = () => {
     <div>
       {/* <p className='text-5xl text-center mt-10 font-semibold'>Welcome to Mobilicis</p> */}
       {/* <p className='text-1xl text-center m-5 mb-5 font-semibold'>Please login your account to proceed further</p> */}
-      <div className='w-5/6 border rounded-xl shadow-xl m-auto flex flex-col justify-center items-center mt-36 md:flex-row p-10'>
+      <div className='w-5/6 border rounded-xl shadow-xl m-auto flex flex-col justify-center items-center mt-36 md:flex-row mb-12 p-10'>
         <div className='w-full md:w-1/2 border-r-2'>
           <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-page-4468581-3783954.png" alt="" />
         </div>

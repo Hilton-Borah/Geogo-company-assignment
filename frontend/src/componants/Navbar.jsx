@@ -88,8 +88,8 @@ const Navbar = ({isOpen,toggleNavbar}) => {
         <div className="md:hidden  border-t-2">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link to="/" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</Link>
-            <Link to="/moviecontrol" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Movie control</Link>
-            <a href="/wishlist" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</a>
+            <Link to={getLocalData("token") ? "/moviecontrol" : "/login"} className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Movie control</Link>
+            <a  href={getLocalData("token") ? "/wishlist" : "/login"} className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Wishlist</a>
             <select onChange={handleChange} className="text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium border-gray-800 outline-none m-auto">
               <option value="">{getLocalData("username")?<p>Hi, {getLocalData("username")}</p> : "My account"}</option>
               <option value="login" className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
