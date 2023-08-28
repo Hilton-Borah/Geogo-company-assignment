@@ -3,7 +3,7 @@ import * as types from "./actiontypes";
 
 export const getAllData=(page,limit,filter) => (dispatch) =>{
     dispatch({type:types.GET_ALL_MOVIE_REQUEST});
-    return axios.get(`http://localhost:4500/movie?page=${page}&limit=${limit}&search=${filter}`)
+    return axios.get(`https://fair-rose-walkingstick-kilt.cyclic.app/movie?page=${page}&limit=${limit}&search=${filter}`)
     .then((res)=>{
         // console.log(res.data.allMovie)
         dispatch({type:types.GET_ALL_MOVIE_SUCCESS,payload:res.data.allMovie})
@@ -29,7 +29,7 @@ export const getAllData=(page,limit,filter) => (dispatch) =>{
 
 export const getAllDataDetails =(id)=> (dispatch) =>{
     dispatch({type:types.GET_ALL_MOVIEDETAILS_REQUEST});
-    return axios.get(`http://localhost:4500/movie/${id}`)
+    return axios.get(`https://fair-rose-walkingstick-kilt.cyclic.app/movie/${id}`)
     .then((res)=>{
         // console.log(res.data)
         dispatch({type:types.GET_ALL_MOVIEDETAILS_SUCCESS,payload:res.data})
@@ -42,7 +42,7 @@ export const getAllDataDetails =(id)=> (dispatch) =>{
 
 export const getAllSearchData =(query)=> (dispatch) =>{
     dispatch({type:types.GET_ALL_MOVIE_SEARCH_REQUEST});
-    return axios.get(`http://localhost:4500/movie/?search=${query}`)
+    return axios.get(`https://fair-rose-walkingstick-kilt.cyclic.app/movie/?search=${query}`)
     .then((res)=>{
         // console.log(query,res.data.allMovie)
         dispatch({type:types.GET_ALL_MOVIE_SEARCH_SUCCESS,payload:res.data.allMovie})
@@ -55,7 +55,7 @@ export const getAllSearchData =(query)=> (dispatch) =>{
 
 export const postAllData =(data)=> (dispatch) =>{
     dispatch({type:types.POST_ALL_MOVIE_REQUEST});
-    return axios.post(`http://localhost:4500/movie/add/`,data)
+    return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/movie/add/`,data)
     .then((res)=>{
         // console.log(res.data)
         dispatch({type:types.POST_ALL_MOVIE_SUCCESS,payload:res.data})
@@ -69,7 +69,7 @@ export const postAllData =(data)=> (dispatch) =>{
 
 export const deleteData =(id)=> (dispatch) =>{
     dispatch({type:types.DELETE_ALL_MOVIE_REQUEST});
-    return axios.delete(`http://localhost:4500/movie/delete/${id}`)
+    return axios.delete(`https://fair-rose-walkingstick-kilt.cyclic.app/movie/delete/${id}`)
     .then((res)=>{
         // console.log(res.data)
         dispatch({type:types.DELETE_ALL_MOVIE_SUCCESS,payload:res.data})
@@ -82,7 +82,7 @@ export const deleteData =(id)=> (dispatch) =>{
 
 export const editData =(id)=> (dispatch) =>{
     dispatch({type:types.EDIT_ALL_MOVIE_REQUEST});
-    return axios.patch(`http://localhost:4500/movie/update/${id}`)
+    return axios.patch(`https://fair-rose-walkingstick-kilt.cyclic.app/movie/update/${id}`)
     .then((res)=>{
         // console.log(res.data)
         dispatch({type:types.EDIT_ALL_MOVIE_SUCCESS,payload:res.data})
@@ -96,7 +96,7 @@ export const editData =(id)=> (dispatch) =>{
 
 export const postWishlist =(data)=> (dispatch) =>{
     dispatch({type:types.POST_MOVIE_WISHLIST_REQUEST});
-    return axios.post(`http://localhost:4500/wishlist/add/`,data)
+    return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/wishlist/add/`,data)
     .then((res)=>{
         console.log(res.data)
         dispatch({type:types.POST_MOVIE_WISHLIST_SUCCESS,payload:res.data})
@@ -110,7 +110,7 @@ export const postWishlist =(data)=> (dispatch) =>{
 
 export const getWishlistData= (dispatch) =>{
     dispatch({type:types.GET_MOVIE_WISHLIST_REQUEST});
-    return axios.get(`http://localhost:4500/wishlist/`)
+    return axios.get(`https://fair-rose-walkingstick-kilt.cyclic.app/wishlist/`)
     .then((res)=>{
         console.log(res.data)
         dispatch({type:types.GET_MOVIE_WISHLIST_SUCCESS,payload:res.data})
@@ -123,7 +123,7 @@ export const getWishlistData= (dispatch) =>{
 
 export const deleteWishlistData =(id)=> (dispatch) =>{
     dispatch({type:types.DELETE_MOVIE_WISHLIST_REQUEST});
-    return axios.delete(`http://localhost:4500/wishlist/delete/${id}`)
+    return axios.delete(`https://fair-rose-walkingstick-kilt.cyclic.app/wishlist/delete/${id}`)
     .then((res)=>{
         // console.log(res.data)
         dispatch({type:types.DELETE_MOVIE_WISHLIST_SUCCESS,payload:res.data})

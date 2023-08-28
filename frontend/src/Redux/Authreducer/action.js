@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const getRegistration = (data) => (dispatch) => {
     dispatch({ type: types.REGISTRATION_REQUEST })
-    return axios.post(`http://localhost:4500/user/register`, data)
+    return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/register`, data)
         .then((res) => {
             
            console.log(res.data)
@@ -19,7 +19,7 @@ export const getRegistration = (data) => (dispatch) => {
 
 export const getLogin = (data) => (dispatch) => {
     dispatch({ type: types.LOGIN_REQUEST })
-    return axios.post(`http://localhost:4500/user/login`, data)
+    return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/login`, data)
         .then((res) => {
                // console.log(res.data)
            return dispatch({ type: types.LOGIN_SUCCESS, payload: res.data })
@@ -31,7 +31,7 @@ export const getLogin = (data) => (dispatch) => {
 
 // export const verifyOtp = (data) => (dispatch) => {
 //     dispatch({ type: types.OTP_REQUEST })
-//     return axios.post(`http://localhost:4500/user/verifyotp`, data)
+//     return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/verifyotp`, data)
 //         .then((res) => {
             
 //           return  dispatch({ type: types.OTP_SUCCESS, payload: res.data })
@@ -43,7 +43,7 @@ export const getLogin = (data) => (dispatch) => {
 
 // export const resendOtp = (data) => (dispatch) => {
 //     dispatch({ type: types.OTP_REQUEST })
-//     return axios.post(`http://localhost:4500/user/resendotp`, data)
+//     return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/resendotp`, data)
 //         .then((res) => {
             
 //           return  dispatch({ type: types.OTP_SUCCESS, payload: res.data })

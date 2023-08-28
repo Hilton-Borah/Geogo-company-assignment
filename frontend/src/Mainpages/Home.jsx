@@ -5,6 +5,7 @@ import { getAllData, getAllSearchData } from '../Redux/AppReducer/action';
 import { Link, useSearchParams } from 'react-router-dom';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { AiOutlineSearch } from "react-icons/ai"
+import Footer from '../componants/Footer';
 
 
 const Home = () => {
@@ -100,7 +101,7 @@ const Home = () => {
       <div className='w-10/12  mt-36 mb-12 m-auto gap-5'>
         <input type="search" className='w-full md:w-1/2 lg:w-1/2 rounded-lg ring-0' value={searchparams.get("q")} onChange={handleChange} placeholder={"What you want to see ......."} />
         {
-          text === "" ? null : <div className={`bg-white absolute left-96 z-10 overflow-scroll w-full md:w-1/2 lg:w-1/2 m-auto border rounded-lg ${allMovieSearch.length === 0 ? 'h-12' : 'h-48'}`}>
+          text === "" ? null : <div className={`bg-white overflow-x-hidden overflow-y-scroll w-full md:w-1/2 lg:w-1/2 m-auto border rounded-lg ${allMovieSearch.length === 0 ? 'h-12' : 'h-48'}`}>
             {
               allMovieSearch.length === 0 ? <div className='w-full flex justify-center items-center m-auto gap-2 p-2'>
                 <AiOutlineSearch />
@@ -158,7 +159,12 @@ const Home = () => {
             // console.log(el)
             return (
               <Link to={`/${el.Title}/details/${el._id}`}>
-                <MovieCard id={el._id} Title={el.Title} imdbRating={el.imdbRating} Poster={el.Poster} Genre={el.Genre} Year={el.Year} />
+                {
+                  isLoading ?  <div className="flex items-center justify-center mt-36 mb-36">
+                  <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-blue"></div>
+                </div> :   <MovieCard id={el._id} Title={el.Title} imdbRating={el.imdbRating} Poster={el.Poster} Genre={el.Genre} Year={el.Year} />
+                }
+               
               </Link>
             )
           })
@@ -171,8 +177,9 @@ const Home = () => {
           page === 1 ? null : <button onClick={handlePagePrev} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue border-2 border-blue font-semibold'>Prev</button>
         }
         <p className='text-black flex justify-center items-center gap-3'><IoIosArrowBack /> {page} <IoIosArrowForward /></p>
-        <button disabled={allMovie.length <= 10} onClick={handlePageNext} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue border-2 border-blue font-semibold'>Next</button>
+        <button disabled={allMovie.length < 10} onClick={handlePageNext} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue border-2 border-blue font-semibold'>Next</button>
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAllDataDetails, postWishlist } from '../Redux/AppReducer/action';
 import { getLocalData } from '../Utils/LocalStorage';
+import Footer from '../componants/Footer';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -75,6 +76,7 @@ const MovieDetails = () => {
           </div>
         </div>
       }
+      <Footer/>
     </div>
   )
 }

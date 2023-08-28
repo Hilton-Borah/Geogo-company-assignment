@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteData, getAllData, postAllData } from '../Redux/AppReducer/action';
+import { deleteData, editData, getAllData, postAllData } from '../Redux/AppReducer/action';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai"
 import { Link, useSearchParams } from 'react-router-dom';
 import Modal from '../componants/Modal';
+import Footer from '../componants/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const initialState = {
@@ -58,6 +61,7 @@ const MovieControl = () => {
     e.preventDefault();
     dispatch(postAllData(text))
     setTimeout(() => {
+      toast.success('Movie added successfully');
       return dispatch(getAllData(page, 20,filter))
     }, 2000);
   }
@@ -68,6 +72,7 @@ const MovieControl = () => {
     dispatch(deleteData(id))
     dispatch(getAllData(page, 20,filter))
     setTimeout(() => {
+      toast.success('Movie deleted successfully');
       return dispatch(getAllData(page, 20,filter))
     }, 2000);
   }
@@ -107,6 +112,12 @@ const MovieControl = () => {
   // edit code -------------- 
   
   const handleEdit=(id)=>{
+    dispatch(editData(id))
+    dispatch(getAllData(page, 20,filter))
+    setTimeout(() => {
+      toast.success('Movie edited successfully');
+      return dispatch(getAllData(page, 20,filter))
+    }, 2000);
     setSearchparams({ edit: id })
     setShowModal(true)
   }
@@ -204,6 +215,7 @@ const MovieControl = () => {
     </div>
 
     <Modal showModal={showModal} setShowModal={setShowModal} id={searchparams.getAll("edit")[0]}/>
+    <Footer/>
     </div>
   )
 }

@@ -15,6 +15,9 @@ module.exports = {
       },
       height: {
         'image': '400px',
+      },
+      width:{
+        'navbar':"95%"
       }
     },
   },
