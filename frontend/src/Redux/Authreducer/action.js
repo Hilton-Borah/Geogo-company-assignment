@@ -27,27 +27,3 @@ export const getLogin = (data) => (dispatch) => {
            return dispatch({ type: types.LOGIN_FAILURE })
         })
 }
-
-
-// export const verifyOtp = (data) => (dispatch) => {
-//     dispatch({ type: types.OTP_REQUEST })
-//     return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/verifyotp`, data)
-//         .then((res) => {
-            
-//           return  dispatch({ type: types.OTP_SUCCESS, payload: res.data })
-//         }).catch((err) => {
-//            return dispatch({ type: types.OTP_FAILURE })
-//         })
-// }
-
-
-// export const resendOtp = (data) => (dispatch) => {
-//     dispatch({ type: types.OTP_REQUEST })
-//     return axios.post(`https://fair-rose-walkingstick-kilt.cyclic.app/user/resendotp`, data)
-//         .then((res) => {
-            
-//           return  dispatch({ type: types.OTP_SUCCESS, payload: res.data })
-//         }).catch((err) => {
-//            return dispatch({ type: types.OTP_FAILURE })
-//         })
-// }
