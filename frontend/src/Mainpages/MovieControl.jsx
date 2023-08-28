@@ -112,14 +112,8 @@ const MovieControl = () => {
   // edit code -------------- 
   
   const handleEdit=(id)=>{
-    dispatch(editData(id))
-    dispatch(getAllData(page, 20,filter))
-    setTimeout(() => {
-      toast.success('Movie edited successfully');
-      return dispatch(getAllData(page, 20,filter))
-    }, 2000);
-    setSearchparams({ edit: id })
     setShowModal(true)
+    setSearchparams({ edit: id })
   }
 
   // main useEffcet------------------

@@ -6,6 +6,8 @@ import MovieCard from '../componants/MovieCard';
 import { Link } from 'react-router-dom';
 import { AiOutlineDelete, AiTwotoneHeart } from 'react-icons/ai';
 import Footer from '../componants/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ const Wishlist = () => {
     dispatch(deleteWishlistData(id))
     setTimeout(() => {
       dispatch(getWishlistData)
+      toast.success("Movie deleted from wishlist");
     }, 1000);
   }
 

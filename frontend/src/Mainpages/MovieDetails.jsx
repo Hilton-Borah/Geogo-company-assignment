@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getAllDataDetails, postWishlist } from '../Redux/AppReducer/action';
 import { getLocalData } from '../Utils/LocalStorage';
 import Footer from '../componants/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -27,12 +29,12 @@ const MovieDetails = () => {
   return (
     <div>
       {
-        movieDetails && movieDetails.message && <div className='md:flex justify-between items-center w-11/12 m-auto mt-24 border rounded-xl'>
+        movieDetails && movieDetails.message && <div className='md:flex justify-between items-center w-11/12 m-auto mt-36 border rounded-xl mb-12'>
           <div className='md:w-1/4 sm:w-full p-5 md:shrink-0'>
             <img className='w-11/12 h-image m-auto rounded-xl' src={movieDetails.message.Poster} alt="" />
             <hr className='border-2 bg-gray mt-5' />
             <div className='flex justify-between items-center mt-5'>
-              <button className='text-green border-2 border-green font-semibold p-1 pl-3 pr-3 rounded-md hover:text-white hover:bg-green'>Trailer</button>
+              <Link target={"_blank"} to={`https://www.youtube.com/results?search_query=${movieDetails.message.Title}+movie+trailor`}><button className='text-green border-2 border-green font-semibold p-1 pl-3 pr-3 rounded-md hover:text-white hover:bg-green'>Trailer</button></Link>
               <button disabled={check} onClick={()=>{
                 // return (
                   if (getLocalData("token")){
@@ -45,7 +47,7 @@ const MovieDetails = () => {
                       userID:getLocalData("userID"),
                     }))
 
-                    alert("Movie added to wishlist")
+                    toast.success("Movie added to wishlist");
                     setCheck(true)
                   } else {
                     navigate("/login")
