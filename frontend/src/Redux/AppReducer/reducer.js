@@ -12,6 +12,7 @@ const intialState = {
 
 export const Appreducer = (state = intialState, action) => {
     const { type, payload } = action;
+    // console.log(payload)
     switch (type) {
         case types.GET_ALL_MOVIE_REQUEST:
             return {
@@ -33,6 +34,7 @@ export const Appreducer = (state = intialState, action) => {
                 isError: true
             }
 
+            // post all movie ---------------------
 
         case types.POST_ALL_MOVIE_REQUEST:
             return {
@@ -54,6 +56,9 @@ export const Appreducer = (state = intialState, action) => {
                 isError: true
             }
 
+
+            // delete-------------------------
+
         case types.DELETE_ALL_MOVIE_REQUEST:
             return {
                 ...state,
@@ -73,6 +78,9 @@ export const Appreducer = (state = intialState, action) => {
                 moviesPost: {},
                 isError: true
             }
+
+
+            // edit movie --------------------------------
 
         case types.EDIT_ALL_MOVIE_REQUEST:
             return {
@@ -95,6 +103,8 @@ export const Appreducer = (state = intialState, action) => {
             }
 
 
+            // get movie details ------------------------
+
         case types.GET_ALL_MOVIEDETAILS_REQUEST:
             return {
                 ...state,
@@ -114,6 +124,32 @@ export const Appreducer = (state = intialState, action) => {
                 movieDetails: {},
                 isError: true
             }
+
+
+            // get  all movie search -----------------------------
+
+        case types.GET_ALL_MOVIE_SEARCH_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case types.GET_ALL_MOVIE_SEARCH_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                allMovieSearch: payload,
+                isError: false
+            }
+        case types.GET_ALL_MOVIE_SEARCH_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                allMovieSearch: [],
+                isError: true
+            }
+
+
+
 
 
 

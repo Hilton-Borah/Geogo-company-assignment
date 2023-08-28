@@ -29,6 +29,8 @@ const MovieControl = () => {
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState(initialState);
   const [searchparams, setSearchparams] = useSearchParams();
+  const [filter,setFilter] = useState("");
+  
   const [page, setPage] = useState(Number(searchparams.getAll("page")[0]) || 1)
   // console.log(searchparams.getAll("edit")[0])
   const [dis, setDis] = useState(false)
@@ -56,7 +58,7 @@ const MovieControl = () => {
     e.preventDefault();
     dispatch(postAllData(text))
     setTimeout(() => {
-      return dispatch(getAllData(page, 20))
+      return dispatch(getAllData(page, 20,filter))
     }, 2000);
   }
 
@@ -64,9 +66,9 @@ const MovieControl = () => {
 
   const handleDelete=(id)=>{
     dispatch(deleteData(id))
-    dispatch(getAllData(page, 20))
+    dispatch(getAllData(page, 20,filter))
     setTimeout(() => {
-      return dispatch(getAllData(page, 20))
+      return dispatch(getAllData(page, 20,filter))
     }, 2000);
   }
 
@@ -112,7 +114,7 @@ const MovieControl = () => {
   // main useEffcet------------------
 
   useEffect(() => {
-    dispatch(getAllData(page, 20))
+    dispatch(getAllData(page, 20,filter))
   }, [page])
 
   return (
@@ -196,7 +198,7 @@ const MovieControl = () => {
             page === 1 ? null : <button onClick={handlePagePrev} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue hover:border-2 border-blue font-semibold'>Prev</button>
           }
           <p className='text-black flex justify-center items-center gap-3'><IoIosArrowBack /> {page} <IoIosArrowForward /></p>
-          <button disabled={allMovie.length < 15} onClick={handlePageNext} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue hover:border-2 border-blue font-semibold'>Next</button>
+          <button disabled={allMovie.length < 20} onClick={handlePageNext} className='p-1 pl-8 pr-8 bg-blue rounded-md text-white hover:bg-white hover:text-blue hover:border-2 border-blue font-semibold'>Next</button>
         </div>
       </div>
     </div>
