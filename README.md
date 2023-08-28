@@ -2,6 +2,8 @@
 
 GEOGO MOVIES offers an immersive movie experience, allowing users to explore detailed movie information, curate personal wishlists, and seamlessly manage their movie preferences. To begin, users can effortlessly create an account on GeoGo Movies, providing them with access to a wide array of features. Once registered, users can delve into comprehensive movie details, make selections to their wishlist, and easily perform actions such as adding, removing, and editing movies from their account. This personalized approach empowers users to tailor their movie choices according to their preferences, enhancing their overall enjoyment on our website.
 
+Check it in brower : https://geogo-movies.netlify.app/
+
 <h1>--API of geogo movies--</h1>
 
 <h3>--Movie CRUD opertions endpoints--</h3>
