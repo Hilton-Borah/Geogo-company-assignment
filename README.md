@@ -23,7 +23,7 @@ GEOGO MOVIES offers an immersive movie experience, allowing users to explore det
 2. Add movies to wishlist : api/wishlist/add
 3. Delete movies from wishlist : api/wishlist/delete/:id
 
-<h3>--User login and registe--r</h3>
+<h3>--User login and register--</h3>
 
 1. User login : api/user/login
 1. User registration : api/user/register
